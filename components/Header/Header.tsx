@@ -6,9 +6,9 @@ import Link from 'next/link'
 const navItems = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
-    { label: 'Destinations', href: '#' },
-    { label: 'Contact Us', href: '#' },
-    { label: 'Blog', href: '#' },
+    { label: 'Destinations', href: '/destinations' },
+    { label: 'Contact Us', href: '/contact' },
+    { label: 'Blog', href: '/blog' },
 ]
 
 const Header: React.FC = () => {
@@ -31,10 +31,11 @@ const Header: React.FC = () => {
                 <nav className="hidden md:flex items-center gap-4">
                     <ul className="flex items-center gap-4">
                         {navItems.map((item) => {
+                            const active = isActive(item.href);
                             return (<li key={item.label}>
                                 <a
                                     href={item.href}
-                                    className="text-gray-700 px-3 py-2 rounded-md hover:bg-gray-100 transition"
+                                    className={`text-gray-700 px-3 py-2 rounded-md hover:bg-gray-100 transition ${active ? 'bg-gray-100' : ''}`}
                                 >
                                     {item.label}
                                 </a>
