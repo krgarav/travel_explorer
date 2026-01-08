@@ -1,65 +1,129 @@
+
+import Header from "@/components/Header/Header";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <>
+    <Header />
+  <main className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="relative h-[70vh] w-full">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+          alt="Travel destination"
+          fill
+          className="object-cover"
           priority
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            Discover Your Next Adventure
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="max-w-2xl text-lg md:text-xl mb-8">
+            Explore beautiful destinations, plan unforgettable trips, and travel the world with ease.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+          {/* Search Bar */}
+          <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-4 flex flex-col md:flex-row gap-3">
+            <input
+              type="text"
+              placeholder="Where are you going?"
+              className="flex-1 rounded-xl border border-gray-200 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <input
+              type="date"
+              className="rounded-xl border border-gray-200 px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 transition">
+              Search
+            </button>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Popular Destinations */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+          Popular Destinations
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Paris",
+              image:
+                "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+            },
+            {
+              title: "Bali",
+              image:
+                "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+            },
+            {
+              title: "New York",
+              image:
+                "https://images.unsplash.com/photo-1549921296-3a6b7f8c6b2c",
+            },
+          ].map((place) => (
+            <div
+              key={place.title}
+              className="bg-white rounded-2xl overflow-hidden shadow hover:shadow-lg transition"
+            >
+              <div className="relative h-56 w-full">
+                <Image
+                  src={place.image}
+                  alt={place.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  {place.title}
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Experience the beauty and culture of {place.title} with our curated travel packages.
+                </p>
+                <button className="text-blue-600 font-semibold hover:underline">
+                  Explore →
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">
+            Why Travel With Us
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="rounded-2xl bg-gray-50 p-8 text-center shadow-sm">
+              <h3 className="text-xl font-semibold mb-3">Best Prices</h3>
+              <p className="text-gray-600">
+                We offer competitive prices and exclusive deals for top destinations worldwide.
+              </p>
+            </div>
+            <div className="rounded-2xl bg-gray-50 p-8 text-center shadow-sm">
+              <h3 className="text-xl font-semibold mb-3">Easy Booking</h3>
+              <p className="text-gray-600">
+                Book your trips quickly and easily with our seamless booking experience.
+              </p>
+            </div>
+            <div className="rounded-2xl bg-gray-50 p-8 text-center shadow-sm">
+              <h3 className="text-xl font-semibold mb-3">24/7 Support</h3>
+              <p className="text-gray-600">
+                Our travel experts are available around the clock to assist you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    </>
+  
   );
 }
