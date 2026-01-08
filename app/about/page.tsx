@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import React from "react";
 
@@ -123,16 +124,9 @@ export default function AboutPage(): React.JSX.Element {
                     </div>
                 </section>
 
-                <footer className="border-t bg-white">
-                    <div className="max-w-6xl mx-auto px-6 py-6 text-sm text-gray-500 flex flex-col md:flex-row justify-between">
-                        <div>© {new Date().getFullYear()} TravelExplorer. All rights reserved.</div>
-                        <div className="space-x-4 mt-3 md:mt-0">
-                            <a href="/privacy" className="hover:text-gray-700">Privacy</a>
-                            <a href="/terms" className="hover:text-gray-700">Terms</a>
-                        </div>
-                    </div>
-                </footer>
+              
             </main>
+            <Footer />
         </>
 
     );
