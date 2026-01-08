@@ -10,7 +10,7 @@ async function fetchDestinations() {
 
 export default async function HomePage() {
   const destinations = await fetchDestinations();
-  console.log(destinations);
+
   return (
     <>
       <Header />
