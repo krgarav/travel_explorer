@@ -2,6 +2,7 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 
 export async function getServerSideProps() {
+    await new Promise((resolve) => setTimeout(resolve, 10000));
     const blogData = await fetch("https://dummyjson.com/posts?limit=5&skip=10").then(res => res.json());
     return {
         props: {
