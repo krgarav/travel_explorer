@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+</head>
+
+<body style="background-color: #ecedf2; font-family: Helvetica, Arial, sans-serif;">
+    <center>
+        <img src="https://assets.frms.link/images/makeforms-logo.png" alt="logo" width="175px" style="padding: 20px 0px 20px 20px;">
+        <div style="max-width: 600px; background-color: #ffffff; border-color: #e5e5e5; border-style: solid; border-width: 0 1px 1px 1px;">
+            <div style="background-color: #09090B; font-size: 1px; height: 7px; margin-bottom: 30px;"></div>
+            <div style="padding: 0px 20px 20px 20px;">
+                <table style="text-align: start; width: 100%; padding: 20px 0;">
+                    <div style="color: #000000; font-size: 20px; font-weight: 400; font-style: normal; letter-spacing: normal; line-height: 32px; text-transform: none; text-align: start; padding: 0; margin: 0; margin-bottom: 10px;">
+                        ${message}
+                    </div>
+                    <tbody>
+                        <tr style="border-bottom: 0.6px solid #ededed; padding: 8px 0; display: table; width: 100%;">
+                            <td style="line-height: 28px; width: 150px; color: #4e4e4e; font-weight: 200;">What</td>
+                            <td style="color:#101010; font-weight:400; text-align: left; vertical-align: text-bottom;">${what}</td>
+                        </tr>
+                        <tr style="border-bottom: 0.6px solid #ededed; padding: 8px 0; display: table; width: 100%;">
+                            <td style="line-height: 28px; width: 150px; color: #4e4e4e; font-weight: 200;">When</td>
+                            <td style="text-align: left; vertical-align: text-bottom;">
+                                <p style="color:#101010; font-weight:400; line-height:24px;">
+                                    <span>${when.date} | ${when.timerange}
+                                        <span style="color:#4b5563">(${when.timezone})</span>
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="display: table; width: 100%; padding: 5px 0;">
+                            <td style="line-height: 28px; width: 150px; color: #4e4e4e; font-weight: 200;">Who</td>
+                            <td style="text-align: left; vertical-align: text-bottom;">
+                                ${attendees
+                                .map(
+                                    a => `<div style="color:#101010; font-weight:400; line-height:24px">
+                                    ${a.name} - ${a.type} 
+                                    <span style="color:#4b5563;">
+                                        <a href="mailto:${a.email}" style="color:#4b5563" target="_blank">${a.email}</a>
+                                    </span>
+                                    </div>`,
+                                )
+                                .join('\n')}
+                            </td>
+                        </tr>
+                        ${
+                        where
+                        ? html`
+                        <tr style="display: table; width: 100%; padding: 5px 0;">
+                            <td style="line-height: 28px; width: 150px; color: #4e4e4e; font-weight: 200;">Where</td>
+                            <td style="text-align: left; vertical-align: text-bottom;">
+                                <a href="${where}" target="_blank">${where}</a>
+                            </td>
+                        </tr>
+                        `
+                        : html`
+                        <tr style="display: table; width: 100%; padding: 5px 0;">
+                            <td style="line-height: 28px; width: 150px; color: #4e4e4e; font-weight: 200;">Reason</td>
+                            <td style="text-align: left; vertical-align: text-bottom;">
+                                ${comment || 'Reason not provided'}
+                            </td>
+                        </tr>
+                        `
+                        }
+                        ${
+                        reschedule || cancel
+                        ? html`
+                        <tr>
+                            <td align="center" style="font-size:0;padding:10px 25px;word-break:break-word">
+                                <div style="font-family:Roboto,Helvetica,sans-serif;font-size:16px;font-weight:500;line-height:0px;text-align:left;color:#101010">
+                                    <p style="font-weight:400;line-height:24px;text-align:center;width:100%">
+                                        Need to make a change?
+                                        <span>
+                                            <a href="${reschedule}" style="margin-left:5px;margin-right:5px;text-decoration:underline" target="_blank">Reschedule</a>
+                                            ${cancel ? 'or' : ''}
+                                        </span>
+                                        ${cancel
+                                        ? `<span>
+                                            <a href="${cancel}" style="margin-left:5px;text-decoration:underline" target="_blank">Cancel</a>
+                                        </span>`
+                                        : ''}
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>`
+                        : ''
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="color: #bbbbbb; font-size: 12px; font-weight: 400; font-style: normal; letter-spacing: normal; line-height: 20px; text-transform: none; text-align: center; padding-top: 20px; padding-bottom: 40px;">
+            Powered by MakeForms.io
+        </div>
+    </center>
+</body>
+
+</html>
